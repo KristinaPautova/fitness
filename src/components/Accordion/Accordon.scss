@@ -1,0 +1,44 @@
+@import "src/variables";
+
+.accordion1 {
+  display: flex;
+  column-gap: 62px;
+  margin: 40px 140px 50px;
+}
+
+.men_foto {
+  width: 100%;
+  height: 70vh;
+  background-image: linear-gradient(
+      rgba(248, 255, 248, 0.2),
+      rgba(255, 255, 255, 0.2)
+    ),
+    url("../../img/Frame.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+
+  & > h2 {
+    font-family: "Permanent Marker";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 64px;
+    line-height: 70px;
+    color: $blue-basic;
+  }
+}
+
+@media all and (max-width: 800px) {
+  .accordion1 {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media all and (max-width: 500px) {
+  .accordion1 {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+}

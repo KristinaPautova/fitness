@@ -1,0 +1,79 @@
+@import "src/variables";
+
+.bac__component {
+  background-image: url("../../img/bac_blue.png");
+}
+
+.product__box {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.product__list {
+  //padding-bottom: 100px;
+
+  h1 {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 86px;
+    line-height: 99px;
+    //color: #FFFFFF;
+    padding-top: 150px;
+    max-width: 850px;
+    padding-left: 30px;
+  }
+
+  & > p {
+    font-family: "Red Hat Display";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 36px;
+    color: #ffffff;
+    padding-left: 30px;
+    margin-top: 30px;
+    max-width: 600px;
+  }
+}
+
+.paginationBttns {
+  width: 80%;
+  height: 10%;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 60px 0;
+}
+
+.paginationBttns a {
+  padding: 10%;
+  margin: 10% 8px;
+  border-radius: 5px;
+  border: 1.5px solid rgba(0, 145, 212, 0.904);
+  color: black;
+  background-color: #f3f3f3;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.paginationBttns a:hover {
+  color: white;
+  background-color: rgba(0, 145, 212, 0.904);
+}
+
+.paginationActive a {
+  color: white;
+  background-color: rgba(0, 145, 212, 0.904);
+}
+
+@media all and (max-width: 500px) {
+  .product__list h1 {
+    font-size: 26px;
+    line-height: 30px;
+    text-align: center;
+    padding-left: 0;
+  }
+}

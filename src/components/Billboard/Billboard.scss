@@ -1,0 +1,162 @@
+@import "src/variables";
+.back {
+  box-sizing: border-box;
+  height: 70vh;
+  width: 100%;
+  position: relative;
+  background-image: url("../../img/sport.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.home {
+  background: linear-gradient(
+    170deg,
+    rgba(255, 255, 255, 0.8) 100.98%,
+    rgb(255, 255, 255) 70.62%
+  );
+  box-sizing: border-box;
+  margin: 0px;
+  min-width: 0px;
+  position: absolute;
+  inset: 0px;
+}
+
+.home__main_right {
+  & > .swiper {
+    width: 569px;
+    height: 435px;
+    padding: 50px;
+  }
+
+  & > .swiper-slide {
+    background-position: center;
+    background-size: cover;
+    width: 300px;
+    height: 300px;
+  }
+
+  & > .swiper-slide img {
+    display: block;
+    width: 100%;
+  }
+}
+
+.home__main {
+  height: 420px;
+  box-sizing: border-box;
+  margin: 0 auto;
+  padding-top: 150px;
+  min-width: 0;
+  display: flex;
+  position: relative;
+  max-width: 1200px;
+  padding-left: 0px;
+  padding-right: 0px;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  align-items: center;
+  width: 100%;
+}
+
+.home__main_left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.home__main_left > h2 {
+  box-sizing: border-box;
+  margin: 0px 8px 0px 0px;
+  min-width: 0px;
+  font-size: 32px;
+  line-height: 40px;
+  font-weight: 600;
+  display: -webkit-box;
+  overflow: hidden;
+  padding-bottom: 24px;
+}
+
+.left__text {
+  min-width: 0px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: rgb(71, 77, 87);
+  max-width: 470px;
+  margin-bottom: 24px;
+}
+
+.home__main_left > button {
+  margin: 0px;
+  appearance: none;
+  user-select: none;
+  cursor: pointer;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  justify-content: center;
+  background: #081158;
+  border-radius: 6px;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  color: #ffffff;
+  padding: 13px;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.5s linear;
+
+  &:hover {
+    background-color: rgb(77, 120, 175);
+  }
+}
+
+@media all and (max-width: 800px) {
+  .home__main_left {
+    display: none;
+  }
+  .home__main_right {
+    width: 100%;
+  }
+}
+
+@media all and (max-width: 500px) {
+  .home__main_right {
+    width: 100%;
+  }
+
+  .home__main_left > h2 {
+    text-align: center;
+  }
+
+  .home__main {
+    width: 100%;
+    display: flex;
+    align-items: stretch;
+  }
+  .home__main_right {
+    display: none;
+  }
+
+  .home__main_left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+  .left__text {
+    display: block;
+    text-align: center;
+  }
+  .swiper-wrapper img {
+    display: none;
+  }
+}

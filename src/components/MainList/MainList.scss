@@ -1,0 +1,44 @@
+@import "src/variables";
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 100px;
+
+  & > h1 {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 61px;
+    line-height: 70px;
+    color: $blue-basic;
+  }
+
+  & > p {
+    font-family: "Red Hat Display";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 36px;
+    margin-top: 34px;
+    color: $blue-basic;
+    max-width: 780px;
+    text-align: center;
+  }
+
+  & > button {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 22px;
+    color: #ffffff;
+    background: #081158;
+    border-radius: 6px;
+    margin-top: 24px;
+    padding: 15px;
+    text-transform: uppercase;
+    margin-bottom: 100px;
+  }
+}
