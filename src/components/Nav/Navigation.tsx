@@ -14,9 +14,13 @@ import MenuItem from "@mui/material/MenuItem";
 import logo from "../../img/logo.svg";
 import "./Navigation.scss";
 import { Link } from "react-router-dom";
+import {useState} from "react";
+import {
+    useAuthActions
+} from "../../hooks/useActions";
+import {useAuth} from "../../store/action/auth";
 
 const pages = ["shop", "free", "add"];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 const Navigation = () => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
@@ -25,6 +29,35 @@ const Navigation = () => {
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
     null
   );
+
+  //toggle
+    const [loginToggleButton, setLoginToggleButton] = useState(false);
+    const [isLoginButton, setIsLoginButton] = useState(false);
+    const [authValue, setAuthValue] = useState({ email: "", password: "" });
+
+    const { logout, signUp, signIn } = useAuthActions();
+    const user = useAuth();
+
+
+    //register
+    const handleSignIn = (event: any) => {
+        event.preventDefault();
+        if (!authValue.email || !authValue.email) {
+            alert("заполните все поля");
+            return;
+        }
+        signIn(authValue.email, authValue.password);
+        setAuthValue({ email: "", password: "" });
+    };
+    const handleSignUp = (event: any) => {
+        event.preventDefault();
+        if (!authValue.email || !authValue.email) {
+            alert("заполните все поля");
+            return;
+        }
+        signUp(authValue.email, authValue.password);
+        setAuthValue({ email: "", password: "" });
+    };
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -42,6 +75,7 @@ const Navigation = () => {
   };
 
   return (
+      <div className='header'>
     <AppBar position="fixed" className="app__bar">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
@@ -157,16 +191,111 @@ const Navigation = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
+                {
+                    user ?
+                        <MenuItem key='logout' onClick={handleCloseUserMenu}>
+                            <Typography onClick={logout} textAlign="center">Log out</Typography>
+                        </MenuItem>
+                        :
+                        <MenuItem key='login' onClick={handleCloseUserMenu}>
+                            <Typography
+                                onClick={() => setLoginToggleButton(!loginToggleButton)}
+                                textAlign="center">Log in</Typography>
+                        </MenuItem>
+                }
+
+
             </Menu>
           </Box>
         </Toolbar>
       </Container>
     </AppBar>
+          {isLoginButton ? (
+              !user ? (
+                  <form
+                      action=""
+                      className={`login-form ${loginToggleButton ? "active" : null}`}
+                  >
+                      <h3>Login</h3>
+
+                      <input
+                          value={authValue.email}
+                          onChange={(e) =>
+                              setAuthValue({ ...authValue, email: e.target.value })
+                          }
+                          type="email"
+                          placeholder="email "
+                          className="box"
+                      />
+
+                      <input
+                          value={authValue.password}
+                          onChange={(e) =>
+                              setAuthValue({ ...authValue, password: e.target.value })
+                          }
+                          type="password"
+                          placeholder="password"
+                          className="box"
+                      />
+
+                      <input
+                          type="submit"
+                          value="Sign In"
+                          className="btn"
+                          onClick={handleSignIn}
+                      />
+
+                      <p>
+                          Don't have an account?
+                          <Link to={""} onClick={() => setIsLoginButton(!isLoginButton)}>
+                              Sign Up
+                          </Link>
+                      </p>
+                  </form>
+              ) : ''
+          ) : !user ? (
+              <form
+                  action=""
+                  className={`login-form ${loginToggleButton ? "active" : null}`}
+              >
+                  <h3>Register</h3>
+
+                  <input
+                      value={authValue.email}
+                      onChange={(e) =>
+                          setAuthValue({ ...authValue, email: e.target.value })
+                      }
+                      type="email"
+                      placeholder="Email"
+                      className="box"
+                  />
+
+                  <input
+                      value={authValue.password}
+                      onChange={(e) =>
+                          setAuthValue({ ...authValue, password: e.target.value })
+                      }
+                      type="password"
+                      placeholder="password"
+                      className="box"
+                  />
+
+                  <input
+                      type="submit"
+                      value="регистрация"
+                      className="btn"
+                      onClick={handleSignUp}
+                  />
+
+                  <p>
+                      Have an acccount?
+                      <Link to={""} onClick={() => setIsLoginButton(!isLoginButton)}>
+                          Sign In
+                      </Link>
+                  </p>
+              </form>
+          ) : ''}
+      </div>
   );
 };
 export default Navigation;
